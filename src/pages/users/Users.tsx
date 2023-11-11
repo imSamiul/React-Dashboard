@@ -3,6 +3,9 @@ import DataTable from "../../Components/DataTable/DataTable";
 import "./users.scss";
 import { userRows } from "../../data";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import Add from "../../Components/Add/Add";
+
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 90, align: "center" },
   {
@@ -83,14 +86,22 @@ const columns: GridColDef[] = [
   },
 ];
 const Users = () => {
+  const [open, setOpen] = useState(false);
+  // function onHandleSetOpen(event) {
+  //  event.preventDefault();
+  // }
+
   return (
     <div className="users">
       <div className="info">
         <h1 className="heading">Users</h1>
-        <button className="addUser">Add New User</button>
+        <button className="addUser" onClick={() => setOpen(true)}>
+          Add New User
+        </button>
       </div>
 
       <DataTable columns={columns} rows={userRows} />
+      {open && <Add header="User" inputFields={columns} onSetOpen={setOpen} />}
     </div>
   );
 };
