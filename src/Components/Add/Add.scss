@@ -1,0 +1,81 @@
+@import "../../styles/variables.scss";
+.add {
+  // background-color: $dark-bg;
+  height: 100vh;
+  width: 100%;
+
+  background-color: $dark-bg;
+  // opacity: 0.4;
+  background-color: rgba(0, 0, 0, 0.9);
+
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal {
+    // height: 400px;
+    border-radius: 10px;
+    padding: 40px;
+
+    // position: fixed;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    background-color: $main-bg;
+
+    // width: max-content;
+
+    .modal-header {
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      color: $soft-color;
+      .close {
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
+      .heading {
+        font-size: 1.7rem;
+      }
+    }
+    form {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(4, 1fr);
+      gap: 10px;
+      .inputField {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        input {
+          padding: 10px;
+          font-size: 14px;
+          color: white;
+          background-color: transparent;
+          border: 1px solid $soft-bg;
+          border-radius: 3px;
+          // height: 40px;
+        }
+        input:focus {
+          outline: none;
+          color: $soft-color;
+          border: 1px solid $soft-color;
+        }
+      }
+      .submit {
+        grid-column: 1/4;
+        grid-row: 4/5;
+        height: 70%;
+        margin-top: 20px;
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
