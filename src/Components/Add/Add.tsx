@@ -7,13 +7,19 @@ type props = {
   inputFields: GridColDef[];
   onSetOpen: Dispatch<React.SetStateAction<boolean>>;
 };
+type formData = {
+  [key: string]: string;
+};
 
 function Add(props: props) {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState<formData>({});
   const onHandleSubmit = (e: any) => {
     e.preventDefault();
     props.onSetOpen(false);
-    console.log(e);
+    console.log(formData);
+  };
+  const onHandleChange = (e: any) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   return (
     <div className="add">
@@ -39,6 +45,8 @@ function Add(props: props) {
                     placeholder={inputField.field}
                     name={inputField.field}
                     type="text"
+                    onChange={onHandleChange}
+                    value={formData[inputField.field]}
                   ></input>
                 </div>
               );
