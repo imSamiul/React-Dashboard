@@ -1,0 +1,21 @@
+.products {
+  .action {
+    display: flex;
+    gap: 15px;
+
+    img {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+  }
+  .info {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    button {
+      padding: 5px;
+      cursor: pointer;
+    }
+  }
+}

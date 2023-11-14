@@ -16,9 +16,16 @@ function Add(props: props) {
   const onHandleSubmit = (e: any) => {
     e.preventDefault();
     props.onSetOpen(false);
-    console.log(formData);
   };
   const onHandleChange = (e: any) => {
+    if (e.target.type === "checkbox") {
+      if (e.target.id === "false") {
+        setFormData({ ...formData, [e.target.name]: "false" });
+        return;
+      }
+      setFormData({ ...formData, [e.target.name]: "true" });
+      return;
+    }
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   return (
@@ -35,19 +42,59 @@ function Add(props: props) {
           {props.inputFields
             .filter(
               (inputField) =>
-                !(inputField.field === "id" || inputField.field === "avatar")
+                !(
+                  inputField.field === "id" ||
+                  inputField.field === "img" ||
+                  inputField.field === "action"
+                )
             )
             .map((inputField, index) => {
               return (
-                <div className="inputField" key={index}>
-                  <label>{inputField.headerName}</label>
+                <div
+                  className={`inputField ${
+                    inputField.type === "boolean" && "checkbox"
+                  }`}
+                  key={index}
+                >
+                  <label>{inputField.headerName}:</label>
+
                   <input
                     placeholder={inputField.field}
                     name={inputField.field}
-                    type="text"
+                    id="true"
+                    type={
+                      inputField.field === "inStock" ||
+                      inputField.field === "verified"
+                        ? "checkbox"
+                        : "text"
+                    }
                     onChange={onHandleChange}
-                    value={formData[inputField.field]}
+                    value={
+                      formData[inputField.field]
+                        ? formData[inputField.field].toString()
+                        : ""
+                    }
                   ></input>
+                  {inputField.type === "boolean" && (
+                    <label htmlFor={inputField.field}>True</label>
+                  )}
+                  {inputField.type === "boolean" && (
+                    <>
+                      <input
+                        placeholder={inputField.field}
+                        name={inputField.field}
+                        id="false"
+                        type="checkbox"
+                        onChange={onHandleChange}
+                        value={
+                          formData[inputField.field]
+                            ? formData[inputField.field].toString()
+                            : ""
+                        }
+                      ></input>
+                      <label htmlFor={inputField.field}>False</label>
+                    </>
+                  )}
                 </div>
               );
             })}
