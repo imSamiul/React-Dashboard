@@ -13,9 +13,11 @@ type formData = {
 
 function Add(props: props) {
   const [formData, setFormData] = useState<formData>({});
-  const onHandleSubmit = (e: any) => {
-    e.preventDefault();
+  const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault;
+
     props.onSetOpen(false);
+    console.log(e.target);
   };
   const onHandleChange = (e: any) => {
     if (e.target.type === "checkbox") {
@@ -38,7 +40,7 @@ function Add(props: props) {
           <h1 className="heading">Add new {props.header}</h1>
         </div>
 
-        <form action="" className="form" onSubmit={onHandleSubmit}>
+        <form action="" className="form" onSubmit={onHandleSubmit} key="form">
           {props.inputFields
             .filter(
               (inputField) =>
@@ -62,6 +64,7 @@ function Add(props: props) {
                     placeholder={inputField.field}
                     name={inputField.field}
                     id="true"
+                    key={inputField.field}
                     type={
                       inputField.field === "inStock" ||
                       inputField.field === "verified"
@@ -69,11 +72,7 @@ function Add(props: props) {
                         : "text"
                     }
                     onChange={onHandleChange}
-                    value={
-                      formData[inputField.field]
-                        ? formData[inputField.field].toString()
-                        : ""
-                    }
+                    value={formData[inputField?.field] ?? ""}
                   ></input>
                   {inputField.type === "boolean" && (
                     <label htmlFor={inputField.field}>True</label>
@@ -85,12 +84,9 @@ function Add(props: props) {
                         name={inputField.field}
                         id="false"
                         type="checkbox"
+                        key={inputField.field}
                         onChange={onHandleChange}
-                        value={
-                          formData[inputField.field]
-                            ? formData[inputField.field].toString()
-                            : ""
-                        }
+                        value={formData[inputField?.field] ?? ""}
                       ></input>
                       <label htmlFor={inputField.field}>False</label>
                     </>
@@ -98,7 +94,7 @@ function Add(props: props) {
                 </div>
               );
             })}
-          <button type="button" className="submit" onClick={onHandleSubmit}>
+          <button type="submit" className="submit">
             Send
           </button>
         </form>
