@@ -29,12 +29,12 @@ function Single(props: Props) {
           <div className="header">
             {props.img && (
               <img
-                src="../../../public/IMG_20211019_170958.jpg"
+                src={props.img}
                 alt="profile image"
                 className="profile-image"
               />
             )}
-            <h1 className="profile-name">Samiul Karim</h1>
+            <h1 className="profile-name">{props.title}</h1>
             <button className="update-button">Update</button>
           </div>
           <div className="other-details">

@@ -1,10 +1,10 @@
 import { GridColDef } from "@mui/x-data-grid";
-import DataTable from "../../Components/DataTable/DataTable";
-import "./product.scss";
+import DataTable from "../DataTable/DataTable";
+import "./products.scss";
 import { products } from "../../data";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Add from "../../Components/Add/Add";
+import Add from "../Add/Add";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 90, align: "center" },
@@ -71,7 +71,7 @@ const columns: GridColDef[] = [
       };
       return (
         <div className="action">
-          <Link to={"/users/" + params.row.id}>
+          <Link to={"/products/" + params.row.id}>
             <img src="/view.svg" alt="" />
           </Link>
           <div
