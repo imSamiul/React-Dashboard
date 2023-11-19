@@ -22,7 +22,7 @@ a {
 .container {
   display: flex;
   // width: 100%;
-  max-width: 90%;
+  // max-width: 90%;
 }
 .menuContainer {
   width: 250px;
@@ -32,5 +32,5 @@ a {
 .contentContainer {
   padding: 5px 20px;
   // width: max-content;
-  max-width: 90%;
+  width: 100%;
 }
